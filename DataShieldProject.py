@@ -7,16 +7,16 @@ import schedule
 import shutil
 import hashlib
 import zipfile
+
 ############################################################################
 #
 #   Function Name : Make_Zip
 #   Description   : Return the Zip file of the current directory 
-#   Input         : String
-#   Output        : Zip File
 #   Author        : Shubham Shankarlal Kumawat
 #   Date          : 09/02/2026
 #
 ############################################################################
+
 def Make_Zip(folder):
     timestamp = time.strftime("%Y-%m-%d_%H-%M-c%S")
     zip_Name = folder+"_"+timestamp+".zip"
@@ -34,6 +34,15 @@ def Make_Zip(folder):
 
     return zip_Name
 
+############################################################################
+#
+#   Function Name : Calculate_hash
+#   Description   : Return the MD5 hash of a file
+#   Author        : Shubham Shankarlal Kumawat
+#   Date          : 09/02/2026
+#
+############################################################################
+
 def Calculate_hash(Path):
     hobj = hashlib.md5()
     fobj = open(Path,"rb")
@@ -48,6 +57,14 @@ def Calculate_hash(Path):
     fobj.close()
     return hobj.hexdigest()
 
+############################################################################
+#
+#   Function Name : BackupFiles
+#   Description   : Returns Backup files from source to destination
+#   Author        : Shubham Shankarlal Kumawat
+#   Date          : 09/02/2026
+#
+############################################################################
 
 def BackupFiles(Source , Destination):
     Copied_Files = []
@@ -71,6 +88,14 @@ def BackupFiles(Source , Destination):
                 
     return Copied_Files
 
+############################################################################
+#
+#   Function Name : DataShieldStart
+#   Description   : Returns the Backup files and Zip file name
+#   Author        : Shubham Shankarlal Kumawat
+#   Date          : 09/02/2026
+#
+############################################################################
 
 def DataShieldStart(Source = "Data"):
     Border = "-" * 50
@@ -88,12 +113,20 @@ def DataShieldStart(Source = "Data"):
     print("Zip File gets created : ",zip_file)
     print(Border)
         
- 
+ ############################################################################
+#
+#   Function Name : main
+#   Description   : Returns the command line arguments and apply the scheduler
+#   Author        : Shubham Shankarlal Kumawat
+#   Date          : 09/02/2026
+#
+############################################################################
+
 def main():
     
     Border = "-" * 50
     print(Border)
-    print("--------- Data Shield System ----------")
+    print("--------------- Data Shield System ---------------")
     print(Border)
 
     if len(sys.argv) == 2:
@@ -142,8 +175,21 @@ def main():
     print("----------Thank You For Using Our Script----------")
     print(Border)
 
+############################################################################
+#
+#  Call of main function to start the execution of the script
+#
+############################################################################
 
 if __name__ == "__main__":
     main()
 
+############################################################################
+#
+#   Input  : python DataShieldFinal.py 5 Data
+#
+#   Output : Program will take backup of the Data folder after every 5 min
+#            and create a zip file of the backuped files.
+#
+############################################################################
 
